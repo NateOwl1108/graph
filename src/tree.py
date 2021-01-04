@@ -9,13 +9,14 @@ def remove_parenthesis(edges):
     edges_list.append(edge)
   return edges_list
 
-def get_children(value, edges_list):
+def get_children(value, edges_list):#gets children of value from list of edges
   edges_list = list(remove_parenthesis(edges_list))
   edges = []
   for index in range(len(edges_list)):
     if edges_list[index][0] == value:
       edges.append(edges_list[index][1])
   return(edges)
+
 
 def get_parents(value, edges): 
   edges_list = list(remove_parenthesis(edges))
