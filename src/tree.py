@@ -57,34 +57,29 @@ class Tree():
           parent.children[index] = Node(parent.children[index])
           children_array.append(parent.children[index])
       node_array = children_array
+  
+  def nodes_breadth_first(self):
+    queue = [self.root.value]
+    visited = []
+    while len(queue) > 0 :
+      node = Node(queue[0])
+      visited.append(node)
+      node.children = get_children(node.value, self.edges)
+      for child in node.children:
+        queue.append(child)
+      queue.remove(node.value)
+    return visited
+
+  def nodes_depth_first(self):
+    queue = [self.root.value]
+    visited = []
+    while len(queue) > 0 :
+      node = Node(queue[0])
+      visited.append(node)
+      node.children = get_children(node.value, self.edges)
+      for child in node.children:
+        queue.insert(0,child)
+      queue.remove(node.value)
+    return visited
 
 
-edges = [('a','c'), ('e','g'), ('e','i'), ('e','a'), ('g','b'), ('a','d'), ('d','f'), ('f','h'), ('d','j'), ('c','k')]
-tree = Tree(edges)
-tree.build_from_edges()
-
-assert tree.root.value == 'e'
-
-assert [node.value for node in tree.root.children] == ['g', 'i', 'a']
-
-
-assert [node.value for node in tree.root.children[0].children] == ['b']
-
-
-assert [node.value for node in tree.root.children[1].children] == []
-
-assert [node.value for node in tree.root.children[2].children] == ['c', 'd']
-
-assert [node.value for node in tree.root.children[2].children[0].children] == ['k']
-
-assert [node.value for node in tree.root.children[2].children[1].children] == ['f', 'j']
-
-assert [node.value for node in tree.root.children[0].children[0].children] == []
-
-assert [node.value for node in tree.root.children[2].children[0].children[0].children] == []
-
-assert [node.value for node in tree.root.children[2].children[1].children[1].children] == []
-
-assert [node.value for node in tree.root.children[2].children[1].children[0].children] == ['h']
-
-assert [node.value for node in tree.root.children[2].children[1].children[0].children[0].children] == []

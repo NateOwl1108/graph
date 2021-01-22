@@ -1,1 +1,1 @@
-echo Hello World
+python tree_test.py
