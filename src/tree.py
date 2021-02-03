@@ -39,23 +39,26 @@ class Node():
   def __init__(self, value):
     self.value = value
     self.children = next
+    self.index = None
 
 class Tree():
 
-  def __init__(self, edges):
+  def __init__(self, edges, node_values):
     self.edges = edges
     self.root = Node(get_root(self.edges))
+    self.root.index = node_values.index(self.root.value)
+    self.node_values = node_values
 
   def  build_from_edges(self):
     node_array = [self.root]
-    
     while len(node_array) > 0:
       children_array = []
-      for parent in node_array:
-        parent.children = get_children(parent.value, self.edges)
-        for index in range(len(parent.children)):
-          parent.children[index] = Node(parent.children[index])
-          children_array.append(parent.children[index])
+      for parent in range(len(node_array)):
+        node_array[parent].children = get_children(node_array[parent].value, self.edges)
+        for index in range(len(node_array[parent].children)):
+          node_array[parent].children[index] = Node(node_array[parent].children[index])
+          node_array[parent].children[index].index = self.node_values.index(node_array[parent].children[index].value)
+          children_array.append(node_array[parent].children[index])
       node_array = children_array
   
   def nodes_breadth_first(self):
