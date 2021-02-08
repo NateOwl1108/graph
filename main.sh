@@ -1,1 +1,1 @@
-python tree_test.py
+python test_graph.py
