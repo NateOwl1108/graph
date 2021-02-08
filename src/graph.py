@@ -17,28 +17,19 @@ class Graph():
   def __init__(self, edges):
     self.edges = edges
   def get_nodes_breadth_first(self, root):
-      root = Node(root)
-      root.index = 0
-      index = 0
       node_array = [root]
       neighbors_array = []
       visited = []
       non_repeating = True
       while non_repeating == True:
         non_repeating = False
-        for point in node_array:
-          print('point')
-          print(point)
+        for point in range(len(node_array)):
           if point not in [node.value for node in visited] :
             non_repeating = True
-            node_array_index = node_array.index(point)
-            node_array[index].neighbors = get_neighbors(point.value, self.edges)
-            for neighbor in range(len(node_array[index].neighbors)):
-              node_array[index].neighbors[index] = Node(node_array[index].neighbors[index])
-
-              node_array[index].neighbors[index].index = index
-              node_array.append(node_array[index].neighbors[index])
-          visited.append(node_array[index])
+            node_array[index] = Node(node_array[index])
+            node_array[index].neighbors = get_neighbors(node_array[index].value, self.edges)
+            
+            
         node_array = neighbors_array
       
     
