@@ -12,9 +12,8 @@ def get_neighbors(value, edges_list):
 
 class Node():
   def __init__(self, value):
-    self.value = value
     self.neighbors = None
-    self.index = None
+    self.index = value
 
 class Graph():
   def __init__(self, edges):
@@ -24,7 +23,7 @@ class Graph():
   def build_from_edges(self):
     for index in range(len(self.edges)):
       index_value = Node(index)
-      index_value.neighbors = get_neighbors(index_value.value, self.edges)
+      index_value.neighbors = get_neighbors(index_value.index, self.edges)
       self.list[index] = index_value
 
 
@@ -36,8 +35,20 @@ class Graph():
       visited.append(value)
       queue.pop(0)
       for neighbor in value.neighbors:
-        if neighbor not in [node.value for node in visited] and neighbor not in queue:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
           queue.append(neighbor)
+    return visited
+
+  def get_nodes_depth_first(self, root):
+    queue = [root]
+    visited = []
+    while len(queue)>0:
+      value = self.list[queue[0]]
+      visited.append(value)
+      queue.pop(0)
+      for neighbor in value.neighbors:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
+          queue.insert(0,neighbor)
     return visited
 
       
