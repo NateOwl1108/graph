@@ -1,8 +1,9 @@
 
 class Node():
   def __init__(self, value):
-    self.index = value
     self.neighbors = None
+    self.index = value
+
 class Graph():
   def __init__(self, edges):
     self.edges = edges
@@ -20,49 +21,34 @@ class Graph():
 
   def build_from_edges(self):
     for index in range(len(self.edges)):
-      self.node_list[index] = Node(index)
-      self.node_list[index].index = index
-      self.node_list[index].neighbors = self.get_neighbors(index)
-    print([node.neighbors for node in self.node_list])
-
+      index_value = Node(index)
+      index_value.neighbors = self.get_neighbors(index_value.index)
+      self.node_list[index] = index_value
+      
   def get_nodes_breadth_first(self, root):
     queue = [root]
     visited = []
-    runs = 0 
-    while len(queue) > 0 :
-      runs += 1
-      if runs == 30:
-        return 0
-      else:
-        node = self.node_list[queue[0]]
-        visited.append(node)
-        neighbors = self.node_list[node.index].neighbors
-        queue.pop(0)
-        for neighbor in neighbors:
-         if neighbor not in [node.index for node in visited]:
-            queue.append(neighbor)
-        
-      return visited
-      
+    while len(queue)>0:
+      value = self.node_list[queue[0]]
+      visited.append(value)
+      queue.pop(0)
+      for neighbor in value.neighbors:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
+          queue.append(neighbor)
+    return visited
+  
+
   def get_nodes_depth_first(self, root):
     queue = [root]
     visited = []
-    runs = 0 
-    while len(queue) > 0 :
-      runs += 1
-      if runs == 30:
-        return 0
-      else:
-        node = self.node_list[queue[0]]
-        visited.append(node)
-        neighbors = self.node_list[node.index].neighbors
-        queue.pop(0)
-        for neighbor in neighbors:
-         if neighbor not in [node.index for node in visited]:
-            queue.insert(0,neighbor)
-        
-      return visited
-      
-    
+    while len(queue)>0:
+      value = self.node_list[queue[0]]
+      visited.append(value)
+      queue.pop(0)
+      for neighbor in value.neighbors:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
+          queue.insert(0,neighbor)
+    return visited
+
       
     
