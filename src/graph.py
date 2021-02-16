@@ -80,8 +80,10 @@ class Graph():
 
   def calc_shortest_path(self, starting_node_index, ending_node_index):
     node_list = self.set_breadth_first_distance_and_previous(starting_node_index)
-    previous_list = [node_list[ending_node_index].index]
-    print(previous_list)
+    node_index_list = [node.index for node in node_list]
+    index = node_index_list.index(ending_node_index)
+    previous_list = [node_list[index].index]
     while previous_list[0] != starting_node_index:
-      previous_list.insert(0, node_list[previous_list[0]].previous.index)
+      index = node_index_list.index(previous_list[0])
+      previous_list.insert(0, node_list[index].previous.index)
     return previous_list
