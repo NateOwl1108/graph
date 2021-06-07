@@ -1,9 +1,9 @@
+
 import sys
 sys.path.append('src')
 from graph import Graph
 edges = [(0,1),(1,2),(1,3),(3,4),(1,4),(4,5)]
 graph = Graph(edges)
-
 graph.build_from_edges()
 
 bf = graph.get_nodes_breadth_first(2)
