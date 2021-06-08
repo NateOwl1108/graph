@@ -1,14 +1,33 @@
 
+<<<<<<< HEAD
 class Node():
   def __init__(self, current_node):
     self.neighbors = None
     self.index = current_node
     self.distance = None
     self.previous = None
+=======
+
+def get_neighbors(value, edges_list):
+  copy_list = list(edges_list)
+  neighbor_list = []
+  for neighbors in copy_list:
+    if value in neighbors:
+      for point in neighbors:
+        if point!= value:
+          neighbor_list.append(point)
+  return neighbor_list
+
+class Node():
+  def __init__(self, value):
+    self.neighbors = None
+    self.index = value
+>>>>>>> origin/master
 
 class Graph():
   def __init__(self, edges):
     self.edges = edges
+<<<<<<< HEAD
     self.node_list = [_ for _ in range(len(self.edges))]
 
   def get_neighbors(self, current_node):
@@ -26,6 +45,41 @@ class Graph():
       index_current_node = Node(index)
       index_current_node.neighbors = self.get_neighbors(index_current_node.index)
       self.node_list[index] = index_current_node
+=======
+    self.list = [_ for _ in range(len(self.edges))]
+
+  def build_from_edges(self):
+    for index in range(len(self.edges)):
+      index_value = Node(index)
+      index_value.neighbors = get_neighbors(index_value.index, self.edges)
+      self.list[index] = index_value
+
+
+  def get_nodes_breadth_first(self, root):
+    queue = [root]
+    visited = []
+    while len(queue)>0:
+      value = self.list[queue[0]]
+      visited.append(value)
+      queue.pop(0)
+      for neighbor in value.neighbors:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
+          queue.append(neighbor)
+    return visited
+
+  def get_nodes_depth_first(self, root):
+    queue = [root]
+    visited = []
+    while len(queue)>0:
+      value = self.list[queue[0]]
+      visited.append(value)
+      queue.pop(0)
+      for neighbor in value.neighbors:
+        if neighbor not in [node.index for node in visited] and neighbor not in queue:
+          queue.insert(0,neighbor)
+    return visited
+
+>>>>>>> origin/master
       
   def get_nodes_breadth_first(self, root):
     queue = [root]
