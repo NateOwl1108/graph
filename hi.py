@@ -1,3 +1,3 @@
-print(current_state[0])
-        print(current_state[1])
-        print(current_state[2])
+a = [1,2,3,4]
+a.insert(1,9)
+print(a)

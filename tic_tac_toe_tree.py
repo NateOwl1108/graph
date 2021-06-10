@@ -10,174 +10,103 @@ class Tic_Tac_Toe():
   def __init__(self):
     self.game_start = Node([[None,None,None],[None,None,None],[None,None,None]])
 
+
   
 
   def game(self):
-    self.game_start.possible_moves = self.next_possible_moves(self.game_start.game_state, 'X', 0)
-
-  def next_possible_moves(self, current_state, turn, level):
+    self.game_start.possible_moves = self.game_recursion(self.game_start)
+  
+  def valid_possible_moves(self, current_state, turn):
     if current_state[0][0] == current_state[1][1] and current_state[2][2] == current_state[1][1] and current_state[1][1] != None :
-          return None 
+          return 'home' 
         #diagnol /
     elif current_state[2][0] == current_state[1][1] and current_state[0][2] == current_state[1][1] and current_state[1][1] != None:
-          return None 
+          return 'home' 
         #first row
     elif current_state[0][0] == current_state[0][1] and current_state[0][2] == current_state[0][1] and current_state[0][1] != None:
-          return None
+          return 'home'
         #second row
     elif current_state[1][0] == current_state[1][1] and current_state[1][2] == current_state[1][1] and current_state[1][1] != None:
-          return None
+          return 'home'
         #third row
     elif current_state[2][0] == current_state[2][1] and current_state[2][2] == current_state[2][1] and current_state[2][1] != None:
-          return None
+          return 'home'
         #column 1
     elif current_state[0][0] == current_state[1][0] and current_state[2][0] == current_state[1][0] and current_state[2][0] != None:
-          return None
+          return 'home'
         #column 2
     elif current_state[0][1] == current_state[1][1] and current_state[2][1] == current_state[1][1] and current_state[2][1] != None:
-          return None
+          return 'home'
         #column 3
     elif current_state[0][2] == current_state[1][2] and current_state[2][2] == current_state[1][2] and current_state[2][2] != None:
-          return None
-    print('Level ', level)
+          return 'home'
     possible_moves = []
     for row in range(3):
       for column in range(3):
-        print('current_state')
-        print(current_state[0])
-        print(current_state[1])
-        print(current_state[2])
-        possibility = list(current_state)
-        print('row', row)
-        print('column', column)
-        print('turn', turn)
-        print(possibility[0])
-        print(possibility[1])
-        print(possibility[2])
-        print('')
 
-        if possibility[0][0] == possibility[1][1] and possibility[2][2] == possibility[1][1] and possibility[1][1] != None :
-          continue 
-        #diagnol /
-        elif possibility[2][0] == possibility[1][1] and possibility[0][2] == possibility[1][1] and possibility[1][1] != None:
-          continue 
-        #first row
-        elif possibility[0][0] == possibility[0][1] and possibility[0][2] == possibility[0][1] and possibility[0][1] != None:
-          continue
-        #second row
-        elif possibility[1][0] == possibility[1][1] and possibility[1][2] == possibility[1][1] and possibility[1][1] != None:
-          continue
-        #third row
-        elif possibility[2][0] == possibility[2][1] and possibility[2][2] == possibility[2][1] and possibility[2][1] != None:
-          continue
-        #column 1
-        elif possibility[0][0] == possibility[1][0] and possibility[2][0] == possibility[1][0] and possibility[2][0] != None:
-          continue
-        #column 2
-        elif possibility[0][1] == possibility[1][1] and possibility[2][1] == possibility[1][1] and possibility[2][1] != None:
-          continue
-        #column 3
-        elif possibility[0][2] == possibility[1][2] and possibility[2][2] == possibility[1][2] and possibility[2][2] != None:
-          continue
+        possibility = []
+        for rows in current_state:
+          possibility.append(list(rows))
         
         if current_state[row][column] == None:
           
           if turn == 'X':
-            no_more = False
             possibility[row][column] = 'X'
-            print('Good Move ')
-            print(possibility[0])
-            print(possibility[1])
-            print(possibility[2])
-            possibility = Node(possibility)
-            possibility.turn = 'O'
-            if possibility.game_state[0][0] == possibility.game_state[1][1] and possibility.game_state[2][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None :
-              possible_moves.append(possibility)
-              continue 
-            #diagnol /
-            elif possibility.game_state[2][0] == possibility.game_state[1][1] and possibility.game_state[0][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None:
-              no_more = True
-              print('diagnol /')
-              possible_moves.append(possibility)
-              continue 
-            #first row
-            elif possibility.game_state[0][0] == possibility.game_state[0][1] and possibility.game_state[0][2] == possibility.game_state[0][1] and possibility.game_state[0][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #second row
-            elif possibility.game_state[1][0] == possibility.game_state[1][1] and possibility.game_state[1][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #third row
-            elif possibility.game_state[2][0] == possibility.game_state[2][1] and possibility.game_state[2][2] == possibility.game_state[2][1] and possibility.game_state[2][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 1
-            elif possibility.game_state[0][0] == possibility.game_state[1][0] and possibility.game_state[2][0] == possibility.game_state[1][0] and possibility.game_state[2][0] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 2
-            elif possibility.game_state[0][1] == possibility.game_state[1][1] and possibility.game_state[2][1] == possibility.game_state[1][1] and possibility.game_state[2][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 3
-            elif possibility.game_state[0][2] == possibility.game_state[1][2] and possibility.game_state[2][2] == possibility.game_state[1][2] and possibility.game_state[2][2] != None:
-              possible_moves.append(possibility)
-              continue
-            if no_more == True:
-              print('no more')
-            possibility.possible_moves = self.next_possible_moves(possibility.game_state, 'O', level + 1)
-            possible_moves.append(possibility)
+            next_move = Node(possibility)
+            next_move.turn = 'O'
+            
+            possible_moves.append(next_move)
           else:
             possibility[row][column] = 'O'
-            print('Good Move ')
-            print(possibility[0])
-            print(possibility[1])
-            print(possibility[2])
-            possibility = Node(possibility)
-            possibility.turn = 'X'
-            if possibility.game_state[0][0] == possibility.game_state[1][1] and possibility.game_state[2][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None :
-              possible_moves.append(possibility)
-              continue 
-            #diagnol /
-            elif possibility.game_state[2][0] == possibility.game_state[1][1] and possibility.game_state[0][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None:
-              possible_moves.append(possibility)
-              continue 
-            #first row
-            elif possibility.game_state[0][0] == possibility.game_state[0][1] and possibility.game_state[0][2] == possibility.game_state[0][1] and possibility.game_state[0][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #second row
-            elif possibility.game_state[1][0] == possibility.game_state[1][1] and possibility.game_state[1][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #third row
-            elif possibility.game_state[2][0] == possibility.game_state[2][1] and possibility.game_state[2][2] == possibility.game_state[2][1] and possibility.game_state[2][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 1
-            elif possibility.game_state[0][0] == possibility.game_state[1][0] and possibility.game_state[2][0] == possibility.game_state[1][0] and possibility.game_state[2][0] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 2
-            elif possibility.game_state[0][1] == possibility.game_state[1][1] and possibility.game_state[2][1] == possibility.game_state[1][1] and possibility.game_state[2][1] != None:
-              possible_moves.append(possibility)
-              continue
-            #column 3
-            elif possibility.game_state[0][2] == possibility.game_state[1][2] and possibility.game_state[2][2] == possibility.game_state[1][2] and possibility.game_state[2][2] != None:
-              possible_moves.append(possibility)
-              continue
-            possibility.possible_moves = self.next_possible_moves(possibility.game_state, 'X', level +1)
-            possible_moves.append(possibility)
-          print(possibility.game_state)
+            next_move = Node(possibility)
+            possible_moves.append(next_move)
     return possible_moves
+
+  def game_depth(self, node):
+    possible_moves = self.valid_possible_moves(node.game_state, node.turn)
+    if len(possible_moves) >0:
+      for possible_move in possible_moves:
+        next_moves = self.valid_possible_moves(possible_move.game_state, possible_move.turn)
+        move_list = []
+        for move in next_moves:
+          if move != 'home':
+            move_list.append(move)
+        possible_move.possible_moves = move_list
+    return possible_moves
+  
+  def game_recursion(self,node):
+    node_depth = self.game_depth(node)
+
+    for move in node_depth:
+      for possibility in move.possible_moves:
+        if possibility == 'home':
+          continue
+        elif self.check_for_win(possibility) == False:
+          possibility.possible_moves = self.game_recursion(possibility)
+
+        
+
+  def check_for_win(self, possibility):
+    if type(possibility) is str:
+      return True
+    if (possibility.game_state[0][0] == possibility.game_state[1][1] and possibility.game_state[2][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None) or(possibility.game_state[2][0] == possibility.game_state[1][1] and possibility.game_state[0][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None) or(possibility.game_state[0][0] == possibility.game_state[0][1] and possibility.game_state[0][2] == possibility.game_state[0][1] and possibility.game_state[0][1] != None) or(possibility.game_state[1][0] == possibility.game_state[1][1] and possibility.game_state[1][2] == possibility.game_state[1][1] and possibility.game_state[1][1] != None) or (possibility.game_state[2][0] == possibility.game_state[2][1] and possibility.game_state[2][2] == possibility.game_state[2][1] and possibility.game_state[2][1] != None) or(possibility.game_state[0][0] == possibility.game_state[1][0] and possibility.game_state[2][0] == possibility.game_state[1][0] and possibility.game_state[2][0] != None) or (possibility.game_state[0][1] == possibility.game_state[1][1] and possibility.game_state[2][1] == possibility.game_state[1][1] and possibility.game_state[2][1] != None) or (possibility.game_state[0][2] == possibility.game_state[1][2] and possibility.game_state[2][2] == possibility.game_state[1][2] and possibility.game_state[2][2] != None):
+      return True
+    else:
+      return False
+         
+
+
 
 tic_tac_toe = Tic_Tac_Toe()
 tic_tac_toe.game()
-
-print('over',tic_tac_toe.game_start.possible_moves )
+print(tic_tac_toe.game_start.possible_moves)
 for move in tic_tac_toe.game_start.possible_moves:
-  print(move.game_state)
+  for possibility in move.possible_moves:
+    print('')
+    print(possibility.game_state[0])
+    print(possibility.game_state[1])
+    print(possibility.game_state[2])
+    print('')
 
 
 

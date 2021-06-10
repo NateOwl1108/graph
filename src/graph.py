@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Node():
   def __init__(self, current_node):
     self.neighbors = None
@@ -7,6 +8,8 @@ class Node():
     self.distance = None
     self.previous = None
 =======
+=======
+>>>>>>> origin/master
 
 def get_neighbors(value, edges_list):
   copy_list = list(edges_list)
@@ -22,11 +25,15 @@ class Node():
   def __init__(self, value):
     self.neighbors = None
     self.index = value
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 class Graph():
   def __init__(self, edges):
     self.edges = edges
+<<<<<<< HEAD
 <<<<<<< HEAD
     self.node_list = [_ for _ in range(len(self.edges))]
 
@@ -46,6 +53,8 @@ class Graph():
       index_current_node.neighbors = self.get_neighbors(index_current_node.index)
       self.node_list[index] = index_current_node
 =======
+=======
+>>>>>>> origin/master
     self.list = [_ for _ in range(len(self.edges))]
 
   def build_from_edges(self):
@@ -79,6 +88,9 @@ class Graph():
           queue.insert(0,neighbor)
     return visited
 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
       
   def get_nodes_breadth_first(self, root):
