@@ -1,6 +1,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Node():
   def __init__(self, current_node):
     self.neighbors = None
@@ -8,6 +9,8 @@ class Node():
     self.distance = None
     self.previous = None
 =======
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 
@@ -26,6 +29,9 @@ class Node():
     self.neighbors = None
     self.index = value
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 =======
 >>>>>>> origin/master
@@ -33,6 +39,7 @@ class Node():
 class Graph():
   def __init__(self, edges):
     self.edges = edges
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     self.node_list = [_ for _ in range(len(self.edges))]
@@ -53,6 +60,8 @@ class Graph():
       index_current_node.neighbors = self.get_neighbors(index_current_node.index)
       self.node_list[index] = index_current_node
 =======
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
     self.list = [_ for _ in range(len(self.edges))]
@@ -89,6 +98,9 @@ class Graph():
     return visited
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 =======
 >>>>>>> origin/master
