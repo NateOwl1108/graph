@@ -47,8 +47,6 @@ class DirectedGraph():
         self.nodes[index].children.append(child)
       self.nodes[index].parents = [Node(index) for index in self.get_parents(index)]
 
-  
-  
   def nodes_breadth_first(self,value):
 
     visited = []
@@ -88,13 +86,9 @@ class DirectedGraph():
     return visited
 
   def find_next(self, index):
-    order_list = [[child for child in node.children] for node in self.nodes]
-    
+    order_list = [[child for child in node.children] for node in self.nodes] 
     next_nodes = order_list[index.index]
-
     return next_nodes
-      
-
 
   def nodes_depth_first(self,index_value):
     depth_queue = []
@@ -138,7 +132,7 @@ class DirectedGraph():
           break
     return iterations
 
-  def previous(self, node_1, node_2):
+  def breadth_first(self, node_1, node_2):
     node_list = [self.nodes[node_1]]
     iterations = 0
     children_list = [self.nodes[node_1]]
@@ -154,7 +148,6 @@ class DirectedGraph():
           for child in value.children:
             child = self.nodes[child.index]
             child.previous = self.nodes[value.index]
-            
             node_list.append(child)
             new_children.append(child)
         children_list = new_children 

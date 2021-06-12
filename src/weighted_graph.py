@@ -45,8 +45,7 @@ class WeightedGraph():
         if node not in neighbor.neighbors:
           neighbor.neighbors.append(node)
      
-
-  def get_nodes_breadth_first(self, initial_node):
+  def nodes_breadth_first(self, initial_node):
     queue = [self.nodes[initial_node]]
     visited = []
     while queue != []:
@@ -58,7 +57,7 @@ class WeightedGraph():
          if neighbor not in queue and neighbor not in visited:
            queue.append(neighbor)
 
-  def get_nodes_depth_first(self, initial_node):
+  def nodes_depth_first(self, initial_node):
     queue = [self.nodes[initial_node]]
     visited = []
     while queue != []:
@@ -74,7 +73,7 @@ class WeightedGraph():
     return visited
 
 
-  def set_breadth_first_distance_and_previous(self, starting_node_index): 
+  def breadth_first_distance_and_previous(self, starting_node_index): 
     self.build_from_edges()
     self.nodes[starting_node_index].d = 0
     queue = [self.nodes[starting_node_index]]
@@ -100,9 +99,6 @@ class WeightedGraph():
             queue.append(neighbor)
     
   def calc_distance(self, starting_node_index, ending_node_index):
-    self.set_breadth_first_distance_and_previous(starting_node_index)
+    self.breadth_first_distance_and_previous(starting_node_index)
     return self.nodes[ending_node_index].d
     
-
-  #def calc_shortest_path(self, starting_node_index, ending_node_index):
-     
