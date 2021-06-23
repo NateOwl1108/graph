@@ -1,0 +1,8 @@
+create empty board
+player are 'X' and 'O'
+turn is 'X'
+find choices
+choose random choice
+change game state and switch to opponents turn 
+run until winner
+
